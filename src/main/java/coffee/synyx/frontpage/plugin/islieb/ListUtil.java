@@ -15,4 +15,7 @@ class ListUtil {
     public static <FROM, TO> List<TO> map(Collection<FROM> streamable, Function<FROM, TO> mapper) {
         return streamable.stream().map(mapper).collect(toList());
     }
+
+    private ListUtil() {
+    }
 }
