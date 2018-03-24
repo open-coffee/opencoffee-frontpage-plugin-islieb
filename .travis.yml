@@ -1,6 +1,6 @@
 language: java
 
-script: ./mvnw test
+script: ./mvnw test jacoco:report coveralls:report
 
 jdk:
 - oraclejdk8
