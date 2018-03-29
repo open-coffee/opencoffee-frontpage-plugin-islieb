@@ -1,15 +1,10 @@
 package coffee.synyx.frontpage.plugin.islieb;
 
-import com.sun.syndication.feed.synd.SyndContent;
-import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
-import com.sun.syndication.feed.synd.SyndFeedImpl;
 import com.sun.syndication.io.FeedException;
 import org.junit.Test;
-import org.mockito.MockSettings;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 
@@ -27,7 +22,7 @@ public class IsLiebRssFeedReaderTest {
     public void verifyGetNewest() throws Exception {
         final SyndFeed syndFeed = anySyndFeed(
             asList(
-                anySyndEntry("first"),
+                anySyndEntry("<img />"),
                 anySyndEntry("second")
             )
         );
@@ -38,7 +33,7 @@ public class IsLiebRssFeedReaderTest {
         IsLiebRssFeedReader sut = new IsLiebRssFeedReader(syndFeedXmlFactory);
         Optional<IsLiebRssFeedEntry> newest = sut.getNewest();
         assertThat(newest.isPresent(), is(true));
-        assertThat(newest.get().getValue(), is("first"));
+        assertThat(newest.get().getValue(), is("<img style=\"max-width: 100%\">"));
     }
 
     @Test
