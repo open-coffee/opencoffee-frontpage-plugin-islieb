@@ -12,7 +12,7 @@ import java.net.URL;
 @Component
 class SyndFeedXmlFactory {
 
-    public SyndFeed build(URL feedUrl) throws FeedException, IOException {
+    SyndFeed build(URL feedUrl) throws FeedException, IOException {
         SyndFeedInput input = new SyndFeedInput();
         return input.build(new XmlReader(feedUrl));
     }
