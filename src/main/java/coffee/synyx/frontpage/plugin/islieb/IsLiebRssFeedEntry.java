@@ -23,7 +23,7 @@ class IsLiebRssFeedEntry {
         String containerStyle = "display:flex;justify-content:center;height:100%;";
         String img = rssFeed.select("img")
                 .removeAttr("class")
-                .attr("style","max-width: 100%")
+                .attr("style","max-height:100%;width:auto;")
                 .outerHtml();
 
         return String.format("<div style=\"%s\">%s</div>", containerStyle, img);
