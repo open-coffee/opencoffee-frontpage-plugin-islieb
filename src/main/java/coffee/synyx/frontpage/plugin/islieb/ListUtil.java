@@ -8,14 +8,15 @@ import static java.util.stream.Collectors.toList;
 
 class ListUtil {
 
-    public static <T> T getFirst(List<T> list) {
+    static <T> T getFirst(List<T> list) {
         return list.get(0);
     }
 
-    public static <FROM, TO> List<TO> map(Collection<FROM> streamable, Function<FROM, TO> mapper) {
+    static <FROM, TO> List<TO> map(Collection<FROM> streamable, Function<FROM, TO> mapper) {
         return streamable.stream().map(mapper).collect(toList());
     }
 
     private ListUtil() {
+        // ok
     }
 }

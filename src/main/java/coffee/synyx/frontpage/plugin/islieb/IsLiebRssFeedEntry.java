@@ -9,11 +9,11 @@ class IsLiebRssFeedEntry {
 
     private final SyndEntry entry;
 
-    public IsLiebRssFeedEntry(SyndEntry entry) {
+    IsLiebRssFeedEntry(SyndEntry entry) {
         this.entry = entry;
     }
 
-    public String getValue() {
+    String getValue() {
         List<SyndContent> contents = entry.getContents();
         return contents.get(0).getValue();
     }

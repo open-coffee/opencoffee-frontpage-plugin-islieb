@@ -21,7 +21,7 @@ class IsLiebRssFeedReader {
         this.syndFeedXmlFactory = syndFeedXmlFactory;
     }
 
-    public Optional<IsLiebRssFeedEntry> getNewest() {
+    Optional<IsLiebRssFeedEntry> getNewest() {
         return getFeed()
                 .map(IsLiebRssFeed::new)
                 .map(IsLiebRssFeed::getEntries)

@@ -10,11 +10,11 @@ class IsLiebRssFeed {
 
     private final SyndFeed feed;
 
-    public IsLiebRssFeed(SyndFeed feed) {
+    IsLiebRssFeed(SyndFeed feed) {
         this.feed = feed;
     }
 
-    public List<IsLiebRssFeedEntry> getEntries() {
+    List<IsLiebRssFeedEntry> getEntries() {
         return map(feed.getEntries(), IsLiebRssFeedEntry::new);
     }
 }
