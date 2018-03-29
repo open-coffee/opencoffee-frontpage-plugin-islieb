@@ -20,6 +20,12 @@ class IsLiebRssFeedEntry {
         final String rssFeedContentHtml = contents.get(0).getValue();
         final Document rssFeed = Jsoup.parse(rssFeedContentHtml);
 
-        return rssFeed.select("img").removeAttr("class").attr("style","max-width: 100%").outerHtml();
+        String containerStyle = "display:flex;justify-content:center;height:100%;";
+        String img = rssFeed.select("img")
+                .removeAttr("class")
+                .attr("style","max-width: 100%")
+                .outerHtml();
+
+        return String.format("<div style=\"%s\">%s</div>", containerStyle, img);
     }
 }

@@ -33,7 +33,7 @@ public class IsLiebRssFeedReaderTest {
         IsLiebRssFeedReader sut = new IsLiebRssFeedReader(syndFeedXmlFactory);
         Optional<IsLiebRssFeedEntry> newest = sut.getNewest();
         assertThat(newest.isPresent(), is(true));
-        assertThat(newest.get().getValue(), is("<img style=\"max-width: 100%\">"));
+        assertThat(newest.get().getValue(), is("<div style=\"display:flex;justify-content:center;height:100%;\"><img style=\"max-width: 100%\"></div>"));
     }
 
     @Test
