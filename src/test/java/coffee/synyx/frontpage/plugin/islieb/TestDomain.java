@@ -35,4 +35,10 @@ class TestDomain {
         when(syndContent.getValue()).thenReturn(value);
         return syndContent;
     }
+
+    static IsLiebRssFeedEntry anyIsLiebRssFeedEntry(String content) {
+        IsLiebRssFeedEntry entry = mock(IsLiebRssFeedEntry.class);
+        when(entry.getValue()).thenReturn(content);
+        return entry;
+    }
 }

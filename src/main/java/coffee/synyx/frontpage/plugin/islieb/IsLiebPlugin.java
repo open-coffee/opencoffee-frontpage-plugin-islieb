@@ -8,10 +8,12 @@ import org.springframework.stereotype.Component;
 public class IsLiebPlugin implements FrontpagePluginInterface {
 
     private final IsLiebRssFeedReader isLiebRssFeedReader;
+    private final IsLiebContentRenderer renderer;
 
     @Autowired
-    public IsLiebPlugin(IsLiebRssFeedReader isLiebRssFeedReader) {
+    public IsLiebPlugin(IsLiebRssFeedReader isLiebRssFeedReader, IsLiebContentRenderer renderer) {
         this.isLiebRssFeedReader = isLiebRssFeedReader;
+        this.renderer = renderer;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class IsLiebPlugin implements FrontpagePluginInterface {
     @Override
     public String content() {
         return isLiebRssFeedReader.getNewest()
-            .map(IsLiebRssFeedEntry::getValue)
+            .map(renderer::render)
             .orElse("");
     }
 }
