@@ -3,6 +3,7 @@ package coffee.synyx.frontpage.plugin.islieb;
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
+import org.jsoup.nodes.Element;
 
 import java.util.List;
 
@@ -36,9 +37,24 @@ class TestDomain {
         return syndContent;
     }
 
-    static IsLiebRssFeedEntry anyIsLiebRssFeedEntry(String content) {
+    static IsLiebRssFeedEntry anyIsLiebRssFeedEntry(Element imageElement) {
         IsLiebRssFeedEntry entry = mock(IsLiebRssFeedEntry.class);
-        when(entry.getValue()).thenReturn(content);
+        when(entry.getImage()).thenReturn(imageElement);
         return entry;
+    }
+
+    /**
+     * Creates an image element that represents an image provided
+     * by the islieb.de rss feed.
+     *
+     * @return an image element
+     */
+    static Element anyImageElement() {
+        return new Element("img")
+            // classname will be removed by renderer
+            .attr("class","islieb-provided-classname")
+            .attr("width", "800")
+            .attr("height", "600")
+            .attr("src", "https://islieb.de/picture/123");
     }
 }

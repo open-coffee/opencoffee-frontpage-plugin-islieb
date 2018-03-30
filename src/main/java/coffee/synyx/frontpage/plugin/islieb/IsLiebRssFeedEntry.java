@@ -4,6 +4,7 @@ import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.util.List;
 
@@ -15,17 +16,11 @@ class IsLiebRssFeedEntry {
         this.entry = entry;
     }
 
-    String getValue() {
+    Element getImage() {
         final List<SyndContent> contents = entry.getContents();
         final String rssFeedContentHtml = contents.get(0).getValue();
         final Document rssFeed = Jsoup.parse(rssFeedContentHtml);
 
-        String containerStyle = "display:flex;justify-content:center;height:100%;";
-        String img = rssFeed.select("img")
-                .removeAttr("class")
-                .attr("style","max-height:100%;width:auto;")
-                .outerHtml();
-
-        return String.format("<div style=\"%s\">%s</div>", containerStyle, img);
+        return rssFeed.select("img").get(0);
     }
 }
