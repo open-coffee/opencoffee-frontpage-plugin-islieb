@@ -22,7 +22,7 @@ public class FrontpageIsLiebPlugin implements FrontpagePluginInterface {
     @Override
     public String content() {
         return isLiebRssFeedReader.getNewest()
-                .map(IsLiebRssFeedEntry::getValue)
-                .orElse("");
+            .map(IsLiebRssFeedEntry::getValue)
+            .orElse("");
     }
 }
