@@ -10,12 +10,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class FrontpageIsLiebPluginTest {
+public class IsLiebPluginTest {
 
     @Test
     public void hasTitle() {
         final IsLiebRssFeedReader feedReader = mock(IsLiebRssFeedReader.class);
-        final FrontpageIsLiebPlugin sut = new FrontpageIsLiebPlugin(feedReader);
+        final IsLiebPlugin sut = new IsLiebPlugin(feedReader);
         assertThat(sut.title(), is(""));
     }
 
@@ -26,7 +26,7 @@ public class FrontpageIsLiebPluginTest {
         when(feedEntry.getValue()).thenReturn("islieb content");
         when(feedReader.getNewest()).thenReturn(Optional.of(feedEntry));
 
-        final FrontpageIsLiebPlugin sut = new FrontpageIsLiebPlugin(feedReader);
+        final IsLiebPlugin sut = new IsLiebPlugin(feedReader);
         final String actualContent = sut.content();
 
         verify(feedReader).getNewest();
@@ -39,7 +39,7 @@ public class FrontpageIsLiebPluginTest {
         final IsLiebRssFeedReader feedReader = mock(IsLiebRssFeedReader.class);
         when(feedReader.getNewest()).thenReturn(Optional.empty());
 
-        final FrontpageIsLiebPlugin sut = new FrontpageIsLiebPlugin(feedReader);
+        final IsLiebPlugin sut = new IsLiebPlugin(feedReader);
         final String actualContent = sut.content();
 
         verify(feedReader).getNewest();

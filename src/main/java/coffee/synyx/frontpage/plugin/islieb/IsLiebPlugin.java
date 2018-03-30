@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FrontpageIsLiebPlugin implements FrontpagePluginInterface {
+public class IsLiebPlugin implements FrontpagePluginInterface {
 
     private final IsLiebRssFeedReader isLiebRssFeedReader;
 
     @Autowired
-    public FrontpageIsLiebPlugin(IsLiebRssFeedReader isLiebRssFeedReader) {
+    public IsLiebPlugin(IsLiebRssFeedReader isLiebRssFeedReader) {
         this.isLiebRssFeedReader = isLiebRssFeedReader;
     }
 
