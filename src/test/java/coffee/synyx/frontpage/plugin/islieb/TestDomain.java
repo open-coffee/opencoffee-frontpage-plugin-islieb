@@ -37,9 +37,9 @@ class TestDomain {
         return syndContent;
     }
 
-    static IsLiebRssFeedEntry anyIsLiebRssFeedEntry(Element imageElement) {
+    static IsLiebRssFeedEntry anyIsLiebRssFeedEntry(Element image) {
         IsLiebRssFeedEntry entry = mock(IsLiebRssFeedEntry.class);
-        when(entry.getImage()).thenReturn(imageElement);
+        when(entry.getImage()).thenReturn(image);
         return entry;
     }
 

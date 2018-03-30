@@ -1,20 +1,24 @@
 package coffee.synyx.frontpage.plugin.islieb;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 @Component
 class IsLiebContentRenderer {
 
-    String render(IsLiebRssFeedEntry entry) {
-        String containerStyle = "display:flex;justify-content:center;height:100%;";
-        String img = prepareImage(entry);
-        return String.format("<div style=\"%s\">%s</div>", containerStyle, img);
+    private final TemplateEngine templateEngine;
+
+    @Autowired
+    IsLiebContentRenderer(@Qualifier("isliebTemplateEngine") TemplateEngine templateEngine) {
+        this.templateEngine = templateEngine;
     }
 
-    private static String prepareImage(IsLiebRssFeedEntry entry) {
-        return entry.getImage()
-            .removeAttr("class")
-            .attr("style","max-height:100%;width:auto;")
-            .outerHtml();
+    String render(ImageDTO image) {
+        Context context = new Context();
+        context.setVariable("image", image);
+        return templateEngine.process("image", context);
     }
 }
