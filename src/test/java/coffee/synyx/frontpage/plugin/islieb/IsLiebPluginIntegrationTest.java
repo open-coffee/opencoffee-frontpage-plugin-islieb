@@ -46,9 +46,13 @@ public class IsLiebPluginIntegrationTest {
         String content = isLiebPlugin.content();
         assertThat(content).isEqualTo(
             "<div style=\"height:100%;\">\n" +
-            "  <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\"></h3>\n" +
+            "  <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
+            "    <a href=\"image-a\" style=\"color:inherit;text-decoration:none\"></a>\n" +
+            "  </h3>\n" +
             "  <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
-            "    <img src=\"image-a\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-1\" />\n" +
+            "    <a href=\"image-a\">\n" +
+            "      <img src=\"image-a\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-1\" />\n" +
+            "    </a>\n" +
             "  </div>\n" +
             "</div>\n"
         );
