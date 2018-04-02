@@ -37,8 +37,8 @@ public class IsLiebPluginIntegrationTest {
     public void ensureContent() throws Exception {
         SyndFeedImpl syndFeed = new SyndFeedImpl();
         syndFeed.setEntries(Arrays.asList(
-            entry(content(img("image-a")), content("image-b")),
-            entry(content(img("image-c")))
+            entry(content(img("image-a", "alt-text-1")), content("image-b")),
+            entry(content(img("image-c", "alt-text-2")))
         ));
 
         when(syndFeedXmlFactory.build(any())).thenReturn(syndFeed);
@@ -48,7 +48,7 @@ public class IsLiebPluginIntegrationTest {
             "<div style=\"height:100%;\">\n" +
             "  <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\"></h3>\n" +
             "  <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
-            "    <img src=\"image-a\" style=\"max-height:100%;width:auto;\" />\n" +
+            "    <img src=\"image-a\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-1\" />\n" +
             "  </div>\n" +
             "</div>\n"
         );
@@ -66,8 +66,8 @@ public class IsLiebPluginIntegrationTest {
         return content;
     }
 
-    private static String img(String src) {
-        return String.format("<img src=\"%s\" >", src);
+    private static String img(String src, String alt) {
+        return String.format("<img src=\"%s\" alt=\"%s\" >", src, alt);
     }
 
 }

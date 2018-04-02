@@ -10,10 +10,10 @@ public class IsLiebFeedEntryMapperTest {
 
     @Test
     public void ensureComicDTOMapping() {
-        ImageDTO expectedImageDTO = new ImageDTO("image-src");
+        ImageDTO expectedImageDTO = new ImageDTO("image-src", "alt text");
         ComicDTO expectedComicDTO = new ComicDTO("my-title", expectedImageDTO);
 
-        SyndEntry syndEntry = anySyndEntry("my-title", "<img src=\"image-src\" />");
+        SyndEntry syndEntry = anySyndEntry("my-title", "<img src=\"image-src\" alt=\"alt text\" />");
         IsLiebRssFeedEntry rssFeedEntry = new IsLiebRssFeedEntry(syndEntry);
 
         ComicDTO comicDTO = IsLiebFeedEntryMapper.mapToComicDTO(rssFeedEntry);

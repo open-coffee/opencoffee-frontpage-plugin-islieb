@@ -20,7 +20,7 @@ public class IsLiebContentRendererTest {
         TemplateEngine templateEngine = mock(TemplateEngine.class);
         when(templateEngine.process(anyString(), any(Context.class))).thenReturn("rendered content");
 
-        final ImageDTO imageDTO = new ImageDTO("image-src");
+        final ImageDTO imageDTO = new ImageDTO("image-src", "image-alt");
         final ComicDTO comicDTO = new ComicDTO("my-title", imageDTO);
         final Context expectedContext = new Context();
         expectedContext.setVariable("image", imageDTO);
