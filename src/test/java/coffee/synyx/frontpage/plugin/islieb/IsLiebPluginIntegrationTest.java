@@ -46,38 +46,64 @@ public class IsLiebPluginIntegrationTest {
 
         String content = isLiebPlugin.content();
         assertThat(content).isEqualTo(
-            "<div style=\"height:100%;overflow:auto;\">\n" +
+            "<div class=\"islieb-wrapper\">\n" +
             "  \n" +
-            "    <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
-            "      <a href=\"image-a\" style=\"color:inherit;text-decoration:none\"></a>\n" +
+            "    <h3 class=\"islieb-comic--title\">\n" +
+            "      <a href=\"image-a\"></a>\n" +
             "    </h3>\n" +
-            "    <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
+            "    <div class=\"islieb-comic--content\">\n" +
             "      <a href=\"image-a\">\n" +
-            "        <img src=\"image-a\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-1\" />\n" +
+            "        <img src=\"image-a\" alt=\"alt-text-1\" />\n" +
             "      </a>\n" +
             "    </div>\n" +
             "  \n" +
             "  \n" +
-            "    <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
-            "      <a href=\"image-b\" style=\"color:inherit;text-decoration:none\"></a>\n" +
+            "    <h3 class=\"islieb-comic--title\">\n" +
+            "      <a href=\"image-b\"></a>\n" +
             "    </h3>\n" +
-            "    <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
+            "    <div class=\"islieb-comic--content\">\n" +
             "      <a href=\"image-b\">\n" +
-            "        <img src=\"image-b\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-2\" />\n" +
+            "        <img src=\"image-b\" alt=\"alt-text-2\" />\n" +
             "      </a>\n" +
             "    </div>\n" +
             "  \n" +
             "  \n" +
-            "    <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
-            "      <a href=\"image-c\" style=\"color:inherit;text-decoration:none\"></a>\n" +
+            "    <h3 class=\"islieb-comic--title\">\n" +
+            "      <a href=\"image-c\"></a>\n" +
             "    </h3>\n" +
-            "    <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
+            "    <div class=\"islieb-comic--content\">\n" +
             "      <a href=\"image-c\">\n" +
-            "        <img src=\"image-c\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-3\" />\n" +
+            "        <img src=\"image-c\" alt=\"alt-text-3\" />\n" +
             "      </a>\n" +
             "    </div>\n" +
             "  \n" +
-            "</div>\n"
+            "</div>\n" +
+            "<style>\n" +
+            "  .islieb-wrapper {\n" +
+            "    height: 100%;\n" +
+            "    overflow: auto;\n" +
+            "  }\n" +
+            "  .islieb-comic--title {\n" +
+            "    margin: 0;\n" +
+            "    padding: 0;\n" +
+            "    height: 2rem;\n" +
+            "    font-size: 1rem;\n" +
+            "    font-weight: 400;\n" +
+            "  }\n" +
+            "  .islieb-comic--title a {\n" +
+            "    color: inherit;\n" +
+            "    text-decoration: none\n" +
+            "  }\n" +
+            "\n" +
+            "  .islieb-comic--content {\n" +
+            "    height: calc(100% - 2rem);\n" +
+            "    text-align: center;\n" +
+            "  }\n" +
+            "  .islieb-comic--content img {\n" +
+            "    max-height: 100%;\n" +
+            "    width: auto;\n" +
+            "  }\n" +
+            "</style>\n"
         );
     }
 
