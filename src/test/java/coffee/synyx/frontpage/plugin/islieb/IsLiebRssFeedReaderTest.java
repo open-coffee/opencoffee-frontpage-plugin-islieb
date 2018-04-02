@@ -11,8 +11,7 @@ import java.util.Optional;
 import static coffee.synyx.frontpage.plugin.islieb.TestDomain.anySyndEntry;
 import static coffee.synyx.frontpage.plugin.islieb.TestDomain.anySyndFeed;
 import static java.util.Arrays.asList;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -22,8 +21,8 @@ public class IsLiebRssFeedReaderTest {
     public void verifyGetNewest() throws Exception {
         final SyndFeed syndFeed = anySyndFeed(
             asList(
-                anySyndEntry("title1", "<img id=\"first\" />"),
-                anySyndEntry("title2", "<img id=\"second\" />")
+                anySyndEntry("title1", "content-first"),
+                anySyndEntry("title2", "content-second")
             )
         );
         final URL expectedURL = new URL("https://islieb.de/feed/");
@@ -32,8 +31,8 @@ public class IsLiebRssFeedReaderTest {
 
         IsLiebRssFeedReader sut = new IsLiebRssFeedReader(syndFeedXmlFactory);
         Optional<IsLiebRssFeedEntry> newest = sut.getNewest();
-        assertThat(newest.isPresent(), is(true));
-        assertThat(newest.get().getImage().attr("id"), is("first"));
+        assertThat(newest.isPresent()).isTrue();
+        assertThat(newest.get().getContent()).isEqualTo("content-first");
     }
 
     @Test
@@ -53,6 +52,6 @@ public class IsLiebRssFeedReaderTest {
 
         IsLiebRssFeedReader sut = new IsLiebRssFeedReader(syndFeedXmlFactory);
         Optional<IsLiebRssFeedEntry> newest = sut.getNewest();
-        assertThat(newest.isPresent(), is(false));
+        assertThat(newest.isPresent()).isFalse();
     }
 }
