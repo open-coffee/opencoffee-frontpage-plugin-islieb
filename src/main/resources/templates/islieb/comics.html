@@ -1,48 +1,206 @@
+<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
 <div xmlns:th="http://www.thymeleaf.org" class="islieb-wrapper">
-  <th:block th:each="comic : ${comics}">
-    <h3 class="islieb-comic--title">
-      <a
-        th:text="${comic.title}"
-        th:href="${comic.image.src}"
-        href="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
-      >
-        Familienurlaub
-      </a>
-    </h3>
-    <div class="islieb-comic--content">
-      <a th:href="${comic.image.src}" href="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png">
-        <img
-          th:alt="${comic.image.alt}"
-          th:src="${comic.image.src}"
-          src="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
-        />
-      </a>
+  <input checked="checked" type="radio" name="islieb-slider" id="islieb-slide-1" />
+  <input type="radio" name="islieb-slider" id="islieb-slide-2" />
+  <input type="radio" name="islieb-slider" id="islieb-slide-3" />
+  <div class="islieb-slider-wrapper">
+    <div class="islieb-slider-wrapper--inner">
+      <article>
+        <h3 class="islieb-comic--title">
+          <a
+            th:text="${comic1.title}"
+            th:href="${comic1.image.src}"
+            href="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
+          >
+            Familienurlaub
+          </a>
+        </h3>
+        <div class="islieb-comic--content">
+          <img
+            th:alt="${comic1.image.alt}"
+            th:src="${comic1.image.src}"
+            src="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
+          />
+        </div>
+      </article>
+      <article>
+        <h3 class="islieb-comic--title">
+          <a
+            th:text="${comic2.title}"
+            th:href="${comic2.image.src}"
+            href="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
+          >
+            Familienurlaub
+          </a>
+        </h3>
+        <div class="islieb-comic--content">
+          <img
+            th:alt="${comic2.image.alt}"
+            th:src="${comic2.image.src}"
+            src="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
+          />
+        </div>
+      </article>
+      <article>
+        <h3 class="islieb-comic--title">
+          <a
+            th:text="${comic3.title}"
+            th:href="${comic3.image.src}"
+            href="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
+          >
+            Familienurlaub
+          </a>
+        </h3>
+        <div class="islieb-comic--content">
+          <img
+            th:alt="${comic3.image.alt}"
+            th:src="${comic3.image.src}"
+            src="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
+          />
+        </div>
+      </article>
     </div>
-  </th:block>
+  </div>
+  <div class="islieb-slider-dot-control">
+    <label for="islieb-slide-1"></label>
+    <label for="islieb-slide-2"></label>
+    <label for="islieb-slide-3"></label>
+  </div>
 </div>
 <style>
+  /* kudos: https://codepen.io/trungk18/pen/EydyoL */
+  /*---- NUMBER OF SLIDE CONFIGURATION ----*/
   .islieb-wrapper {
+    width: 100%;
     height: 100%;
-    overflow: auto;
+    position: relative;
   }
-  .islieb-comic--title {
-    margin: 0;
-    padding: 0;
-    height: 2rem;
-    font-size: 1rem;
-    font-weight: 400;
+
+  .islieb-wrapper input {
+    display: none;
   }
-  .islieb-comic--title a {
-    color: inherit;
-    text-decoration: none
+
+  .islieb-slider-wrapper--inner {
+    width: 300%;
+    height: 100%;
+    line-height: 0;
+  }
+
+  .islieb-wrapper article {
+    width: calc(100% / 3);
+    height: 100%;
+    float: left;
+    position: relative;
+    text-align: center;
+  }
+
+  .islieb-wrapper article img {
+    margin-top: 2rem;
+    height: calc(100% - 2rem);
+    width: auto;
   }
 
   .islieb-comic--content {
-    height: calc(100% - 2rem);
+    height: 100%;
+  }
+
+  /*---- SET UP CONTROL ----*/
+  .islieb-slider-dot-control {
+    position: absolute;
+    width: 100%;
+    height: 2rem;
+    line-height: 2rem;
+    bottom: 0;
     text-align: center;
   }
-  .islieb-comic--content img {
-    max-height: 100%;
-    width: auto;
+
+  .islieb-slider-dot-control label {
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #bbb;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .islieb-slider-dot-control label:hover {
+    background: #ccc;
+    border-color: #777;
+  }
+
+  /* Info Box */
+  .islieb-comic--title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    line-height: 2rem;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 1rem;
+    -webkit-transition: all 1000ms ease-out 600ms;
+    -moz-transition: all 1000ms ease-out 600ms;
+    transition: all 1000ms ease-out 600ms;
+  }
+
+  .islieb-comic--title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Slider Styling */
+  .islieb-slider-wrapper {
+    width: 100%;
+    height: calc(100% - 2rem);
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition: all 500ms ease-out;
+    -moz-transition: all 500ms ease-out;
+    transition: all 500ms ease-out;
+  }
+
+  .islieb-slider-wrapper .islieb-slider-wrapper--inner {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+    -moz-transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+    transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  /*---- SET POSITION FOR SLIDE ----*/
+  #islieb-slide-1:checked ~ .islieb-slider-dot-control label:nth-child(1),
+  #islieb-slide-2:checked ~ .islieb-slider-dot-control label:nth-child(2),
+  #islieb-slide-3:checked ~ .islieb-slider-dot-control label:nth-child(3) {
+    background: #333;
+  }
+
+  #islieb-slide-1:checked ~ .islieb-slider-wrapper article:nth-child(1) .islieb-comic--title,
+  #islieb-slide-2:checked ~ .islieb-slider-wrapper article:nth-child(2) .islieb-comic--title,
+  #islieb-slide-3:checked ~ .islieb-slider-wrapper article:nth-child(3) .islieb-comic--title {
+    opacity: 1;
+  }
+
+  #islieb-slide-1:checked ~ .islieb-slider-wrapper .islieb-slider-wrapper--inner {
+    margin-left: 0%;
+  }
+
+  #islieb-slide-2:checked ~ .islieb-slider-wrapper .islieb-slider-wrapper--inner {
+    margin-left: -100%;
+  }
+
+  #islieb-slide-3:checked ~ .islieb-slider-wrapper .islieb-slider-wrapper--inner {
+    margin-left: -200%;
   }
 </style>

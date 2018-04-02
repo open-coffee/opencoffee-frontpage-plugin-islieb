@@ -23,7 +23,9 @@ class IsLiebContentRenderer {
             return "";
         }
         Context context = new Context();
-        context.setVariable("comics", comicDTOs);
+        context.setVariable("comic1", comicDTOs.get(0));
+        context.setVariable("comic2", comicDTOs.get(1));
+        context.setVariable("comic3", comicDTOs.get(2));
         return templateEngine.process("comics", context);
     }
 }
