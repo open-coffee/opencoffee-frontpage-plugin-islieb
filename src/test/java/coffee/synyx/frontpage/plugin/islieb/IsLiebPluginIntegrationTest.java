@@ -37,23 +37,46 @@ public class IsLiebPluginIntegrationTest {
     public void ensureContent() throws Exception {
         SyndFeedImpl syndFeed = new SyndFeedImpl();
         syndFeed.setEntries(Arrays.asList(
-            entry(content(img("image-a", "alt-text-1")), content("image-b")),
-            entry(content(img("image-c", "alt-text-2")))
+            entry(content(img("image-a", "alt-text-1")), content("not-used-image")),
+            entry(content(img("image-b", "alt-text-2"))),
+            entry(content(img("image-c", "alt-text-3")))
         ));
 
         when(syndFeedXmlFactory.build(any())).thenReturn(syndFeed);
 
         String content = isLiebPlugin.content();
         assertThat(content).isEqualTo(
-            "<div style=\"height:100%;\">\n" +
-            "  <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
-            "    <a href=\"image-a\" style=\"color:inherit;text-decoration:none\"></a>\n" +
-            "  </h3>\n" +
-            "  <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
-            "    <a href=\"image-a\">\n" +
-            "      <img src=\"image-a\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-1\" />\n" +
-            "    </a>\n" +
-            "  </div>\n" +
+            "<div style=\"height:100%;overflow:auto;\">\n" +
+            "  \n" +
+            "    <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
+            "      <a href=\"image-a\" style=\"color:inherit;text-decoration:none\"></a>\n" +
+            "    </h3>\n" +
+            "    <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
+            "      <a href=\"image-a\">\n" +
+            "        <img src=\"image-a\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-1\" />\n" +
+            "      </a>\n" +
+            "    </div>\n" +
+            "  \n" +
+            "  \n" +
+            "    <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
+            "      <a href=\"image-b\" style=\"color:inherit;text-decoration:none\"></a>\n" +
+            "    </h3>\n" +
+            "    <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
+            "      <a href=\"image-b\">\n" +
+            "        <img src=\"image-b\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-2\" />\n" +
+            "      </a>\n" +
+            "    </div>\n" +
+            "  \n" +
+            "  \n" +
+            "    <h3 style=\"margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;\">\n" +
+            "      <a href=\"image-c\" style=\"color:inherit;text-decoration:none\"></a>\n" +
+            "    </h3>\n" +
+            "    <div style=\"height:calc(100% - 2rem);text-align:center;\">\n" +
+            "      <a href=\"image-c\">\n" +
+            "        <img src=\"image-c\" style=\"max-height:100%;width:auto;\" alt=\"alt-text-3\" />\n" +
+            "      </a>\n" +
+            "    </div>\n" +
+            "  \n" +
             "</div>\n"
         );
     }
