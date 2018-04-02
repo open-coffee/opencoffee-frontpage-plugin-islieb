@@ -16,6 +16,10 @@ class IsLiebRssFeedEntry {
         this.entry = entry;
     }
 
+    String getTitle() {
+        return entry.getTitle();
+    }
+
     Element getImage() {
         final List<SyndContent> contents = entry.getContents();
         final String rssFeedContentHtml = contents.get(0).getValue();

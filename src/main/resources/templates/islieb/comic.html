@@ -1,0 +1,12 @@
+<div xmlns:th="http://www.thymeleaf.org" style="height:100%;">
+  <h3 th:text="${comic.title}" style="margin:0;padding:0;height:2rem;font-size:1rem;font-weight:400;">
+    Title
+  </h3>
+  <div style="height:calc(100% - 2rem);text-align:center;">
+    <img
+      th:src="${comic.image.src}"
+      src="https://islieb.de/blog/wp-content/uploads/2018/03/isfies-familienurlaub.png"
+      style="max-height:100%;width:auto;"
+    />
+  </div>
+</div>

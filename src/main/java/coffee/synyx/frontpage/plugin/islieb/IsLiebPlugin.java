@@ -24,8 +24,7 @@ public class IsLiebPlugin implements FrontpagePluginInterface {
     @Override
     public String content() {
         return isLiebRssFeedReader.getNewest()
-            .map(IsLiebRssFeedEntry::getImage)
-            .map(JsoupElementMapper::mapImageElement)
+            .map(IsLiebFeedEntryMapper::mapToComicDTO)
             .map(renderer::render)
             .orElse("");
     }

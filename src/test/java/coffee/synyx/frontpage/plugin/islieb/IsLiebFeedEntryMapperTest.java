@@ -1,0 +1,22 @@
+package coffee.synyx.frontpage.plugin.islieb;
+
+import com.sun.syndication.feed.synd.SyndEntry;
+import org.junit.Test;
+
+import static coffee.synyx.frontpage.plugin.islieb.TestDomain.anySyndEntry;
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class IsLiebFeedEntryMapperTest {
+
+    @Test
+    public void ensureComicDTOMapping() {
+        ImageDTO expectedImageDTO = new ImageDTO("image-src");
+        ComicDTO expectedComicDTO = new ComicDTO("my-title", expectedImageDTO);
+
+        SyndEntry syndEntry = anySyndEntry("my-title", "<img src=\"image-src\" />");
+        IsLiebRssFeedEntry rssFeedEntry = new IsLiebRssFeedEntry(syndEntry);
+
+        ComicDTO comicDTO = IsLiebFeedEntryMapper.mapToComicDTO(rssFeedEntry);
+        assertThat(comicDTO).isEqualTo(expectedComicDTO);
+    }
+}

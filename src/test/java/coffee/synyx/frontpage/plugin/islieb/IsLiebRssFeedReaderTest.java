@@ -22,8 +22,8 @@ public class IsLiebRssFeedReaderTest {
     public void verifyGetNewest() throws Exception {
         final SyndFeed syndFeed = anySyndFeed(
             asList(
-                anySyndEntry("<img id=\"first\" />"),
-                anySyndEntry("<img id=\"second\" />")
+                anySyndEntry("title1", "<img id=\"first\" />"),
+                anySyndEntry("title2", "<img id=\"second\" />")
             )
         );
         final URL expectedURL = new URL("https://islieb.de/feed/");

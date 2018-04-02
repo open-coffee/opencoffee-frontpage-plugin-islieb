@@ -21,11 +21,12 @@ public class IsLiebContentRendererTest {
         when(templateEngine.process(anyString(), any(Context.class))).thenReturn("rendered content");
 
         final ImageDTO imageDTO = new ImageDTO("image-src");
+        final ComicDTO comicDTO = new ComicDTO("my-title", imageDTO);
         final Context expectedContext = new Context();
         expectedContext.setVariable("image", imageDTO);
 
         IsLiebContentRenderer renderer = new IsLiebContentRenderer(templateEngine);
-        String actual = renderer.render(imageDTO);
+        String actual = renderer.render(comicDTO);
 
         verify(templateEngine).process("image", expectedContext);
         assertThat(actual).isEqualTo("rendered content");

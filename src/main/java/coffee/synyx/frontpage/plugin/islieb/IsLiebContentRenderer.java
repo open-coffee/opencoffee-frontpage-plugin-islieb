@@ -16,9 +16,9 @@ class IsLiebContentRenderer {
         this.templateEngine = templateEngine;
     }
 
-    String render(ImageDTO image) {
+    String render(ComicDTO comicDTO) {
         Context context = new Context();
-        context.setVariable("image", image);
-        return templateEngine.process("image", context);
+        context.setVariable("comic", comicDTO);
+        return templateEngine.process("comic", context);
     }
 }
