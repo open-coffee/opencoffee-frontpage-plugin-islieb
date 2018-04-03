@@ -8,6 +8,7 @@ import org.thymeleaf.context.Context;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
@@ -16,6 +17,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class IsLiebContentRendererTest {
+
+    @Test
+    public void ensureFeedEntryRenderingIsEmptyString() {
+        TemplateEngine templateEngine = mock(TemplateEngine.class);
+        IsLiebContentRenderer renderer = new IsLiebContentRenderer(templateEngine);
+        String actual = renderer.render(emptyList());
+        assertThat(actual).isEmpty();
+    }
 
     @Test
     @Ignore("TemplateEngine#process is final. waiting for Thymeleaf3 and ITemplateEngine")
