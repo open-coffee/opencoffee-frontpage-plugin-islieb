@@ -2,9 +2,6 @@ package coffee.synyx.frontpage.plugin.islieb;
 
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import java.util.List;
 
@@ -16,11 +13,12 @@ class IsLiebRssFeedEntry {
         this.entry = entry;
     }
 
-    Element getImage() {
-        final List<SyndContent> contents = entry.getContents();
-        final String rssFeedContentHtml = contents.get(0).getValue();
-        final Document rssFeed = Jsoup.parse(rssFeedContentHtml);
+    String getTitle() {
+        return entry.getTitle();
+    }
 
-        return rssFeed.select("img").get(0);
+    String getContent() {
+        List<SyndContent> contents = entry.getContents();
+        return contents.get(0).getValue();
     }
 }

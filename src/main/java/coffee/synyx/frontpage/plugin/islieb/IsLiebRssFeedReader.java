@@ -9,9 +9,12 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 
+import static coffee.synyx.frontpage.plugin.islieb.ListUtil.getFirst;
 import static java.lang.invoke.MethodHandles.lookup;
+import static java.util.Collections.emptyList;
 
 @Component
 class IsLiebRssFeedReader {
@@ -27,10 +30,14 @@ class IsLiebRssFeedReader {
     }
 
     Optional<IsLiebRssFeedEntry> getNewest() {
+        return getFirst(getEntries());
+    }
+
+    List<IsLiebRssFeedEntry> getEntries() {
         return getFeed()
             .map(IsLiebRssFeed::new)
             .map(IsLiebRssFeed::getEntries)
-            .map(ListUtil::getFirst);
+            .orElse(emptyList());
     }
 
     private Optional<SyndFeed> getFeed() {

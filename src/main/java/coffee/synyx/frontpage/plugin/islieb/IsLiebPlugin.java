@@ -4,6 +4,10 @@ import coffee.synyx.frontpage.plugin.api.FrontpagePluginInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+import static coffee.synyx.frontpage.plugin.islieb.ListUtil.map;
+
 @Component
 public class IsLiebPlugin implements FrontpagePluginInterface {
 
@@ -23,10 +27,8 @@ public class IsLiebPlugin implements FrontpagePluginInterface {
 
     @Override
     public String content() {
-        return isLiebRssFeedReader.getNewest()
-            .map(IsLiebRssFeedEntry::getImage)
-            .map(JsoupElementMapper::mapImageElement)
-            .map(renderer::render)
-            .orElse("");
+        List<IsLiebRssFeedEntry> entries = isLiebRssFeedReader.getEntries();
+        List<ComicDTO> comicDTOs = map(entries, IsLiebFeedEntryMapper::mapToComicDTO);
+        return renderer.render(comicDTOs);
     }
 }
