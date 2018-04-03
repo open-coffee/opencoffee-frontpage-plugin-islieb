@@ -34,6 +34,11 @@ public class IsLiebPluginIntegrationTest {
     private SyndFeedXmlFactory syndFeedXmlFactory;
 
     @Test
+    public void ensureTitle() {
+        assertThat(isLiebPlugin.title()).isEmpty();
+    }
+
+    @Test
     public void ensureContent() throws Exception {
         SyndFeedImpl syndFeed = new SyndFeedImpl();
         syndFeed.setEntries(Arrays.asList(
