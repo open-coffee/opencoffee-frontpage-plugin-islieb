@@ -22,8 +22,8 @@ public class IsLiebRssFeedReaderTest {
     public void verifyGetNewest() throws Exception {
         final SyndFeed syndFeed = anySyndFeed(
             asList(
-                anySyndEntry("<img />"),
-                anySyndEntry("second")
+                anySyndEntry("<img id=\"first\" />"),
+                anySyndEntry("<img id=\"second\" />")
             )
         );
         final URL expectedURL = new URL("https://islieb.de/feed/");
@@ -33,7 +33,7 @@ public class IsLiebRssFeedReaderTest {
         IsLiebRssFeedReader sut = new IsLiebRssFeedReader(syndFeedXmlFactory);
         Optional<IsLiebRssFeedEntry> newest = sut.getNewest();
         assertThat(newest.isPresent(), is(true));
-        assertThat(newest.get().getValue(), is("<div style=\"display:flex;justify-content:center;height:100%;\"><img style=\"max-height:100%;width:auto;\"></div>"));
+        assertThat(newest.get().getImage().attr("id"), is("first"));
     }
 
     @Test

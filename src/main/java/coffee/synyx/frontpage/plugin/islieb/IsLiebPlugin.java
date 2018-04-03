@@ -5,13 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FrontpageIsLiebPlugin implements FrontpagePluginInterface {
+public class IsLiebPlugin implements FrontpagePluginInterface {
 
     private final IsLiebRssFeedReader isLiebRssFeedReader;
+    private final IsLiebContentRenderer renderer;
 
     @Autowired
-    public FrontpageIsLiebPlugin(IsLiebRssFeedReader isLiebRssFeedReader) {
+    public IsLiebPlugin(IsLiebRssFeedReader isLiebRssFeedReader, IsLiebContentRenderer renderer) {
         this.isLiebRssFeedReader = isLiebRssFeedReader;
+        this.renderer = renderer;
     }
 
     @Override
@@ -22,7 +24,9 @@ public class FrontpageIsLiebPlugin implements FrontpagePluginInterface {
     @Override
     public String content() {
         return isLiebRssFeedReader.getNewest()
-            .map(IsLiebRssFeedEntry::getValue)
+            .map(IsLiebRssFeedEntry::getImage)
+            .map(JsoupElementMapper::mapImageElement)
+            .map(renderer::render)
             .orElse("");
     }
 }
