@@ -39,6 +39,11 @@ public class IsLiebPluginIntegrationTest {
     }
 
     @Test
+    public void ensureId() {
+        assertThat(isLiebPlugin.id()).isEqualTo("isLieb");
+    }
+
+    @Test
     public void ensureContent() throws Exception {
         SyndFeedImpl syndFeed = new SyndFeedImpl();
         syndFeed.setEntries(Arrays.asList(

@@ -31,4 +31,9 @@ public class IsLiebPlugin implements FrontpagePluginInterface {
         List<ComicDTO> comicDTOs = map(entries, IsLiebFeedEntryMapper::mapToComicDTO);
         return renderer.render(comicDTOs);
     }
+
+    @Override
+    public String id() {
+        return "isLieb";
+    }
 }
