@@ -1,8 +1,9 @@
 package coffee.synyx.frontpage.plugin.islieb;
 
-import com.sun.syndication.feed.synd.SyndContent;
-import com.sun.syndication.feed.synd.SyndEntry;
-import com.sun.syndication.feed.synd.SyndFeed;
+
+import com.rometools.rome.feed.synd.SyndContent;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ class TestDomain {
         return syndEntry;
     }
 
-    static SyndContent anySyndContent(String value) {
+    private static SyndContent anySyndContent(String value) {
         SyndContent syndContent = mock(SyndContent.class);
         when(syndContent.getValue()).thenReturn(value);
         return syndContent;
