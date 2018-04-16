@@ -1,6 +1,7 @@
 package coffee.synyx.frontpage.plugin.islieb;
 
-import com.sun.syndication.feed.synd.SyndFeed;
+
+import com.rometools.rome.feed.synd.SyndFeed;
 
 import java.util.List;
 

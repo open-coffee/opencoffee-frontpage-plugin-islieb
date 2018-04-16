@@ -1,6 +1,6 @@
 package coffee.synyx.frontpage.plugin.islieb;
 
-import com.sun.syndication.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndEntry;
 import org.junit.Test;
 
 import static coffee.synyx.frontpage.plugin.islieb.TestDomain.anySyndEntry;
