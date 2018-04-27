@@ -7,14 +7,13 @@ jdk:
 
 before_deploy:
   - mvn -DskipTests package
-  - export JAR_FILE=$(ls target/frontpage-plugin-islieb*.jar)
-  - echo "deploying ${JAR_FILE} to GitHub releases"
 
 deploy:
   - provider: releases
     api_key:
       secure: DPRIV3pAe2m0HrKqPy4osL5I21MzKWUqASx1UB0cvYYGqTAPC5uRcR1xgz2VfkPkSRDYLIk+QMZg0UfrVpWxT/8E5Xivaf6WQL//ZNfNT8xgdcGM9nXSjCc7dsjnanpbsDXmt3u2v5Hd2z8amN2WeOn9110t1Y10nsjH68QToPF10TRBkaqGrNHszSyiJIx1qcCCMm3DGqqmqNpS4EC0UhpRjhLel2onF0ZgCKdMMn8uNh1SFiR9GqA/5qLH1Z9mirMowKH8haiFdzA3E26Z0LlyKYij/pkb1YJzXfdx3Gql0i0oWEYJjKYyGNL0NndEK/jf/yALY6VveW+aQTmGScWYN+TKdTU4gOBs1oAt5DI+b/6UA0QkBrPUi1RQ/K4LiRuG5nJnVaqytHQh60oxLZMIhWNOy03CVFVrA2/W5VxfBTip7TZtH09wKXiZx+dynvkh3idkPelWdzuH7qkh7MVS+iKEhbg6s+3V3leomt17quzsVwvJCdhZgxQ26vQSEYUJ4V1y1GOA0/e9xhbDQ9JAJI+RVwqrykYTHS51UB3GiacJJXnqXMce5o/vo4du1nUXHb7oafml7qObNGE2tp8yMji+5o8aqOMDk7S65RrYb4TOoYCy0ehA8Pvqp9a+BSmAKqSDFZ8TE/EdDtzN8uHYOoYyK7KDBr2aTLmPS+Y=
-    file: "${JAR_FILE}"
+    file_glob: true
+    file: 'target/frontpage-plugin-islieb-*.jar'
     skip_cleanup: true
     on:
       tags: true
