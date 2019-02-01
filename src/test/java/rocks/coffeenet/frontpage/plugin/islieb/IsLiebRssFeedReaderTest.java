@@ -1,4 +1,4 @@
-package coffee.synyx.frontpage.plugin.islieb;
+package rocks.coffeenet.frontpage.plugin.islieb;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 
-import static coffee.synyx.frontpage.plugin.islieb.TestDomain.anySyndEntry;
-import static coffee.synyx.frontpage.plugin.islieb.TestDomain.anySyndFeed;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -19,10 +17,10 @@ public class IsLiebRssFeedReaderTest {
 
     @Test
     public void verifyGetNewest() throws Exception {
-        final SyndFeed syndFeed = anySyndFeed(
+        final SyndFeed syndFeed = TestDomain.anySyndFeed(
             asList(
-                anySyndEntry("title1", "content-first"),
-                anySyndEntry("title2", "content-second")
+                TestDomain.anySyndEntry("title1", "content-first"),
+                TestDomain.anySyndEntry("title2", "content-second")
             )
         );
         final URL expectedURL = new URL("https://islieb.de/feed/");

@@ -1,4 +1,4 @@
-package coffee.synyx.frontpage.plugin.islieb;
+package rocks.coffeenet.frontpage.plugin.islieb;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

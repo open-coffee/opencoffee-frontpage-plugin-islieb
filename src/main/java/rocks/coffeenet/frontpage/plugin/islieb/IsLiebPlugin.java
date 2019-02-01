@@ -1,4 +1,4 @@
-package coffee.synyx.frontpage.plugin.islieb;
+package rocks.coffeenet.frontpage.plugin.islieb;
 
 import coffee.synyx.frontpage.plugin.api.ConfigurationDescription;
 import coffee.synyx.frontpage.plugin.api.ConfigurationInstance;
@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-
-import static coffee.synyx.frontpage.plugin.islieb.ListUtil.map;
 
 @Component
 public class IsLiebPlugin implements FrontpagePlugin {
@@ -45,7 +43,7 @@ public class IsLiebPlugin implements FrontpagePlugin {
     public String content(ConfigurationInstance configurationInstance) {
 
         List<IsLiebRssFeedEntry> entries = isLiebRssFeedReader.getEntries();
-        List<ComicDTO> comicDTOs = map(entries, IsLiebFeedEntryMapper::mapToComicDTO);
+        List<ComicDTO> comicDTOs = ListUtil.map(entries, IsLiebFeedEntryMapper::mapToComicDTO);
         return renderer.render(comicDTOs);
     }
 }
