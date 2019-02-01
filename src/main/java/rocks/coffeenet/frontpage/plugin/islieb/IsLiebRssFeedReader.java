@@ -1,4 +1,4 @@
-package coffee.synyx.frontpage.plugin.islieb;
+package rocks.coffeenet.frontpage.plugin.islieb;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
@@ -12,7 +12,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
-import static coffee.synyx.frontpage.plugin.islieb.ListUtil.getFirst;
 import static java.lang.invoke.MethodHandles.lookup;
 import static java.util.Collections.emptyList;
 
@@ -30,7 +29,7 @@ class IsLiebRssFeedReader {
     }
 
     Optional<IsLiebRssFeedEntry> getNewest() {
-        return getFirst(getEntries());
+        return ListUtil.getFirst(getEntries());
     }
 
     List<IsLiebRssFeedEntry> getEntries() {

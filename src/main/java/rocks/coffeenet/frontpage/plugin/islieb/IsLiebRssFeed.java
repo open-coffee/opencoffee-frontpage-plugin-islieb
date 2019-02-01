@@ -1,11 +1,9 @@
-package coffee.synyx.frontpage.plugin.islieb;
+package rocks.coffeenet.frontpage.plugin.islieb;
 
 
 import com.rometools.rome.feed.synd.SyndFeed;
 
 import java.util.List;
-
-import static coffee.synyx.frontpage.plugin.islieb.ListUtil.map;
 
 class IsLiebRssFeed {
 
@@ -16,6 +14,6 @@ class IsLiebRssFeed {
     }
 
     List<IsLiebRssFeedEntry> getEntries() {
-        return map(feed.getEntries(), IsLiebRssFeedEntry::new);
+        return ListUtil.map(feed.getEntries(), IsLiebRssFeedEntry::new);
     }
 }

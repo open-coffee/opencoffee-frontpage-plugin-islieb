@@ -1,4 +1,4 @@
-package coffee.synyx.frontpage.plugin.islieb;
+package rocks.coffeenet.frontpage.plugin.islieb;
 
 import com.rometools.rome.feed.synd.*;
 import org.junit.Test;
